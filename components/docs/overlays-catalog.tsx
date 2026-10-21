@@ -141,7 +141,7 @@ export function OverlaysCatalog() {
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Week 12 narrative</SheetTitle>
-              <SheetDescription>Training Portal</SheetDescription>
+              <SheetDescription>In review</SheetDescription>
             </SheetHeader>
             <div className="px-4">
               <StatusPill value="READY" />
@@ -222,19 +222,27 @@ export function OverlaysCatalog() {
       </Specimen>
 
       <Specimen title="Hover card" note="A preview when the pointer rests on a project name.">
-        <DeskRow title="Project" detail="Rest the pointer on the name to see the open count.">
-        <HoverCard>
-          <HoverCardTrigger
-            render={<Button variant="link" className="px-0" />}
-            delay={200}
-          >
-            Training Portal
-          </HoverCardTrigger>
-          <HoverCardContent>
-            <p className="font-medium">Training Portal</p>
-            <p className="mt-1 text-sm text-muted-foreground">18 open items · Ready</p>
-          </HoverCardContent>
-        </HoverCard>
+        <DeskRow title="Project" detail="Rest the pointer on a name. The same preview works for every tool.">
+          <div className="flex flex-wrap gap-4">
+            {[
+              ["Training Portal", "18 open · Ready"],
+              ["Support Portal", "6 open · Wait"],
+              ["Content Copilot", "11 open · Blocked"],
+            ].map(([name, detail]) => (
+              <HoverCard key={name}>
+                <HoverCardTrigger
+                  render={<Button variant="link" className="px-0" />}
+                  delay={200}
+                >
+                  {name}
+                </HoverCardTrigger>
+                <HoverCardContent>
+                  <p className="font-medium">{name}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{detail}</p>
+                </HoverCardContent>
+              </HoverCard>
+            ))}
+          </div>
         </DeskRow>
       </Specimen>
     </div>

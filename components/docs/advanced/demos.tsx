@@ -157,7 +157,7 @@ export function SidebarSection() {
             <h2 className="text-sm font-semibold">Week 12 narrative</h2>
             <StatusPill value="WAIT" />
           </div>
-          <span className="text-xs text-muted-foreground">Training Portal</span>
+          <span className="text-xs text-muted-foreground">Week 12</span>
         </div>
         <ul className="divide-y divide-border">
           <li className="flex items-center justify-between gap-3 px-4 py-3">
@@ -436,7 +436,7 @@ export function StepsSection() {
       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-lg font-semibold">Week 12 narrative</h2>
-          <p className="mt-1 text-sm text-muted-foreground">Training Portal · in review</p>
+          <p className="mt-1 text-sm text-muted-foreground">In review</p>
         </div>
         <StatusPill value="WAIT" />
       </div>

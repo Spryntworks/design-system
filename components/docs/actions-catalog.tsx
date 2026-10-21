@@ -17,7 +17,7 @@ export function ActionsCatalog() {
         title="On the desk"
         note="The primary action sits with the work. Everything else stays quiet."
       >
-        <DeskRow title="Week 12 narrative" detail="Training Portal · in review">
+        <DeskRow title="Week 12 narrative" detail="In review">
           <StatusPill value="WAIT" />
           <Button variant="ghost">Skip</Button>
           <Button variant="outline">Preview</Button>
