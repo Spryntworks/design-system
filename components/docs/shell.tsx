@@ -17,6 +17,7 @@ const componentLinks = [
   { href: "/components/overlays", label: "Overlays" },
   { href: "/components/data", label: "Data" },
   { href: "/components/feedback", label: "Feedback" },
+  { href: "/components/advanced", label: "Advanced" },
 ]
 
 export function DocsShell({ children }: { children: React.ReactNode }) {
