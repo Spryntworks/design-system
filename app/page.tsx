@@ -26,15 +26,15 @@ export default function OverviewPage() {
   return (
     <div className="flex flex-col gap-12">
       <header className="max-w-[68ch]">
-        <h1 className="text-3xl font-semibold">Sprynt</h1>
-        <p className="mt-3 text-base leading-7 text-muted-foreground">
+        <h1 className="type-display">Sprynt</h1>
+        <p className="type-body mt-3 text-muted-foreground">
           The tool language from the GTM desk. A cool gray ground, white panels,
           a hairline border, and magenta for the one action that matters.
           Ready, Wait, and Blocked are the only statuses.
         </p>
-        <p className="mt-3 text-base leading-7">
-          Tokens live in <code className="font-mono text-[0.85em]">app/globals.css</code>.
-          Components live in <code className="font-mono text-[0.85em]">components/ui</code>.
+        <p className="type-body mt-3">
+          Tokens live in <code className="type-data">app/globals.css</code>.
+          Components live in <code className="type-data">components/ui</code>.
           This site renders those files. Change the system here, then bring the
           same files into a tool.
         </p>

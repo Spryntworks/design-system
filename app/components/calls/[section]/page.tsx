@@ -33,8 +33,8 @@ async function CallSection({ params }: { params: Params }) {
   return (
     <div>
       <header className="max-w-[68ch]">
-        <h1 className="text-3xl font-semibold">{item.title}</h1>
-        <p className="mt-3 text-base leading-7 text-muted-foreground">{item.note}</p>
+        <h1 className="type-display">{item.title}</h1>
+        <p className="type-body mt-3 text-muted-foreground">{item.note}</p>
       </header>
       <div className="mt-8">
         <CallDemo slug={item.slug} />

@@ -29,7 +29,7 @@ export function CallBar({
           </div>
           <p className="mt-1 max-w-[52ch] text-sm leading-6 text-muted-foreground">{detail}</p>
         </div>
-        <p className="font-mono text-3xl leading-none font-medium tabular-nums tracking-tight">{time}</p>
+        <p className="type-figure">{time}</p>
       </header>
       {children ? <div className="border-t border-border">{children}</div> : null}
       {controls ? (

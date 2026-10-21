@@ -9,8 +9,8 @@ export default function AdvancedPage() {
   return (
     <div>
       <header className="max-w-[68ch]">
-        <h1 className="text-3xl font-semibold">Advanced</h1>
-        <p className="mt-3 text-base leading-7 text-muted-foreground">
+        <h1 className="type-display">Advanced</h1>
+        <p className="type-body mt-3 text-muted-foreground">
           Patterns a desk repeats. Each one is its own section.
         </p>
       </header>

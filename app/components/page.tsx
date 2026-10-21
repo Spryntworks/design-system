@@ -37,8 +37,8 @@ export default function ComponentsPage() {
   return (
     <div>
       <header className="max-w-[68ch]">
-        <h1 className="text-3xl font-semibold">Components</h1>
-        <p className="mt-3 text-base leading-7 text-muted-foreground">
+        <h1 className="type-display">Components</h1>
+        <p className="type-body mt-3 text-muted-foreground">
           The files in{" "}
           <code className="font-mono text-[0.85em] text-foreground">components/ui</code>.
           Each group shows the variations a tool is allowed to use.

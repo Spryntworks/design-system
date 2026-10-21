@@ -9,8 +9,8 @@ export default function AgentsPage() {
   return (
     <div>
       <header className="max-w-[68ch]">
-        <h1 className="text-3xl font-semibold">Agents</h1>
-        <p className="mt-3 text-base leading-7 text-muted-foreground">
+        <h1 className="type-display">Agents</h1>
+        <p className="type-body mt-3 text-muted-foreground">
           The worker beside the line. What it heard, what it wants to do, and where it waits for a person.
         </p>
       </header>

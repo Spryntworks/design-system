@@ -8,8 +8,8 @@ export default function DataPage() {
   return (
     <div>
       <header className="max-w-[68ch]">
-        <h1 className="text-3xl font-semibold">Data</h1>
-        <p className="mt-3 text-base leading-7 text-muted-foreground">
+        <h1 className="type-display">Data</h1>
+        <p className="type-body mt-3 text-muted-foreground">
           Lists, pages, and the path into a record.
         </p>
       </header>

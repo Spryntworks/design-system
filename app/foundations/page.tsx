@@ -17,15 +17,6 @@ const colors = [
   ["Blocked", "Stopped, needs a fix", "bg-blocked", "#C2410C", "text-white"],
 ] as const
 
-const type = [
-  ["Display", "text-3xl font-semibold", "Sprynt"],
-  ["Title", "text-xl font-semibold", "Runs"],
-  ["Body", "text-base", "The shared language for internal tools."],
-  ["Label", "text-sm font-medium", "Mission title"],
-  ["Meta", "text-sm text-muted-foreground", "Week 12 batch"],
-  ["Token", "font-mono text-sm", "var(--primary)"],
-] as const
-
 const space = [
   ["1", "0.25rem"],
   ["2", "0.5rem"],
@@ -47,18 +38,18 @@ export default function FoundationsPage() {
   return (
     <div className="flex flex-col gap-16">
       <header className="max-w-[68ch]">
-        <h1 className="text-3xl font-semibold">Foundations</h1>
-        <p className="mt-3 text-base leading-7 text-muted-foreground">
+        <h1 className="type-display">Foundations</h1>
+        <p className="type-body mt-3 text-muted-foreground">
           Color, type, space, and radius from the GTM desk. These values are the
           CSS variables in{" "}
-          <code className="font-mono text-[0.85em] text-foreground">app/globals.css</code>.
-          Components read them. Tools should too.
+          <code className="type-data text-foreground">app/globals.css</code>.
+          Components read them. Tools should too. Type is its own page.
         </p>
       </header>
 
       <section>
-        <h2 className="text-xl font-semibold">Color</h2>
-        <p className="mt-2 max-w-[68ch] text-sm leading-6 text-muted-foreground">
+        <h2 className="type-title">Color</h2>
+        <p className="type-meta mt-2 max-w-[68ch] text-muted-foreground">
           Magenta is the mark, used for the primary action and for Ready.
           Wait is amber. Blocked is red-orange. Everything else stays gray,
           white, and ink. Elevation is the 1px line. Shadow is only for a
@@ -96,34 +87,15 @@ export default function FoundationsPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold">Type</h2>
-        <p className="mt-3 max-w-[68ch] text-sm leading-6 text-muted-foreground">
-          Space Grotesk for interface text. Geist Mono for tokens, code, and
-          measurements.
-        </p>
-        <div className="mt-6 flex flex-col">
-          {type.map(([name, className, sample]) => (
-            <div
-              key={name}
-              className="grid gap-2 border-t border-border py-4 sm:grid-cols-[7rem_1fr] sm:items-baseline"
-            >
-              <p className="text-sm text-muted-foreground">{name}</p>
-              <p className={className}>{sample}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-xl font-semibold">Space</h2>
-        <p className="mt-3 max-w-[68ch] text-sm leading-6 text-muted-foreground">
+        <h2 className="type-title">Space</h2>
+        <p className="type-meta mt-2 max-w-[68ch] text-muted-foreground">
           Use the Tailwind spacing scale. Tight inside a control, wider between
           sections.
         </p>
         <div className="mt-6 flex flex-col gap-3">
           {space.map(([step, size]) => (
             <div key={step} className="flex items-center gap-4">
-              <span className="w-16 shrink-0 font-mono text-sm tabular-nums">
+              <span className="type-data w-28 shrink-0">
                 {step} · {size}
               </span>
               <span
@@ -136,15 +108,15 @@ export default function FoundationsPage() {
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold">Radius</h2>
-        <p className="mt-2 max-w-[68ch] text-sm leading-6 text-muted-foreground">
+        <h2 className="type-title">Radius</h2>
+        <p className="type-meta mt-2 max-w-[68ch] text-muted-foreground">
           Controls use 6px. Large panels use 12px.
         </p>
         <div className="mt-6 flex flex-wrap gap-6">
           {radii.map(([name, radius]) => (
             <div key={name} className="flex flex-col gap-2">
               <span className={`size-16 border border-border bg-card ${radius}`} />
-              <span className="font-mono text-sm">{name}</span>
+              <span className="type-data">{name}</span>
             </div>
           ))}
         </div>

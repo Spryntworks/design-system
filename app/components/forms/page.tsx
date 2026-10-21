@@ -8,8 +8,8 @@ export default function FormsPage() {
   return (
     <div>
       <header className="max-w-[68ch]">
-        <h1 className="text-3xl font-semibold">Forms</h1>
-        <p className="mt-3 text-base leading-7 text-muted-foreground">
+        <h1 className="type-display">Forms</h1>
+        <p className="type-body mt-3 text-muted-foreground">
           Labels, hints, and the controls that collect a run.
         </p>
       </header>

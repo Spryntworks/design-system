@@ -11,7 +11,10 @@ import { cn } from "cn"
 const links = [
   { href: "/", label: "Overview" },
   { href: "/foundations", label: "Foundations" },
-  { href: "/components", label: "Components" },
+]
+
+const foundationLinks = [
+  { href: "/foundations/type", label: "Type" },
 ]
 
 const componentLinks = [
@@ -58,7 +61,7 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
         <Wordmark />
       </header>
       <nav className="flex gap-1 overflow-x-auto border-b border-sidebar-border bg-sidebar px-3 py-2 md:hidden">
-        {[...links, ...componentLinks, ...categories.flatMap((category) => [category, ...category.links])].map(
+        {[...links, ...foundationLinks, { href: "/components", label: "Components" }, ...componentLinks, ...categories.flatMap((category) => [category, ...category.links])].map(
           (link) => (
             <NavLink key={link.href} {...link} active={pathname === link.href} />
           ),
@@ -70,7 +73,13 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
           {links.map((link) => (
             <NavLink key={link.href} {...link} active={pathname === link.href} />
           ))}
+          <div className="flex flex-col gap-px">
+            {foundationLinks.map((link) => (
+              <NavLink key={link.href} {...link} active={pathname === link.href} nested />
+            ))}
+          </div>
           <div className="mt-3 flex flex-col gap-px">
+            <NavLink href="/components" label="Components" active={pathname === "/components"} />
             {componentLinks.map((link) => (
               <NavLink key={link.href} {...link} active={pathname === link.href} nested />
             ))}
@@ -118,7 +127,7 @@ function NavLink({
       aria-current={active ? "page" : undefined}
       className={cn(
         "rounded-md px-2 py-1.5 text-sm whitespace-nowrap",
-        nested && "py-1 pl-4 text-[13px]",
+        nested && "type-meta py-1 pl-4",
         active
           ? "bg-secondary font-semibold text-foreground"
           : "text-muted-foreground hover:bg-secondary hover:text-foreground",

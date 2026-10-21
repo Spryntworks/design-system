@@ -141,7 +141,7 @@ export function SummarySection() {
           <h2 className="text-lg font-semibold">Refund held</h2>
           <p className="mt-1 text-sm text-muted-foreground">Maya Chen · order 1842</p>
         </div>
-        <p className="font-mono text-3xl leading-none font-medium tabular-nums tracking-tight">04:18</p>
+        <p className="type-figure">04:18</p>
       </header>
       <dl className="border-t border-border">
         <SummaryRow label="Outcome" value="The second charge is $42. Nothing was sent." />
