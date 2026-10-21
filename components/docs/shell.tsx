@@ -4,6 +4,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { advancedSections } from "@/components/docs/advanced/sections"
+import { agentSections } from "@/components/docs/agents/sections"
+import { callSections } from "@/components/docs/calls/sections"
 import { cn } from "cn"
 
 const links = [
@@ -25,6 +27,22 @@ const advancedLinks = advancedSections.map((section) => ({
   label: section.title,
 }))
 
+const callLinks = callSections.map((section) => ({
+  href: `/components/calls/${section.slug}`,
+  label: section.title,
+}))
+
+const agentLinks = agentSections.map((section) => ({
+  href: `/components/agents/${section.slug}`,
+  label: section.title,
+}))
+
+const categories = [
+  { href: "/components/advanced", label: "Advanced", links: advancedLinks },
+  { href: "/components/calls", label: "Calls", links: callLinks },
+  { href: "/components/agents", label: "Agents", links: agentLinks },
+]
+
 export function DocsShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
@@ -40,7 +58,7 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
         <Wordmark />
       </header>
       <nav className="flex gap-1 overflow-x-auto border-b border-sidebar-border bg-sidebar px-3 py-2 md:hidden">
-        {[...links, ...componentLinks, { href: "/components/advanced", label: "Advanced" }, ...advancedLinks].map(
+        {[...links, ...componentLinks, ...categories.flatMap((category) => [category, ...category.links])].map(
           (link) => (
             <NavLink key={link.href} {...link} active={pathname === link.href} />
           ),
@@ -57,12 +75,14 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
               <NavLink key={link.href} {...link} active={pathname === link.href} nested />
             ))}
           </div>
-          <div className="mt-3 flex flex-col gap-px">
-            <NavLink href="/components/advanced" label="Advanced" active={pathname === "/components/advanced"} />
-            {advancedLinks.map((link) => (
-              <NavLink key={link.href} {...link} active={pathname === link.href} nested />
-            ))}
-          </div>
+          {categories.map((category) => (
+            <div key={category.href} className="mt-3 flex flex-col gap-px">
+              <NavLink href={category.href} label={category.label} active={pathname === category.href} />
+              {category.links.map((link) => (
+                <NavLink key={link.href} {...link} active={pathname === link.href} nested />
+              ))}
+            </div>
+          ))}
         </div>
       </aside>
       <main id="content" className="px-5 py-8 md:px-10 md:py-10">
