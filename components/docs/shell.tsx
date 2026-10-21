@@ -15,6 +15,7 @@ const links = [
 
 const foundationLinks = [
   { href: "/foundations/type", label: "Type" },
+  { href: "/foundations/icons", label: "Icons" },
 ]
 
 const componentLinks = [

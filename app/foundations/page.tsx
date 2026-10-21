@@ -43,7 +43,7 @@ export default function FoundationsPage() {
           Color, type, space, and radius from the GTM desk. These values are the
           CSS variables in{" "}
           <code className="type-data text-foreground">app/globals.css</code>.
-          Components read them. Tools should too. Type is its own page.
+          Components read them. Tools should too. Type and icons are their own pages.
         </p>
       </header>
 

@@ -112,6 +112,9 @@
     text-wrap: balance;
     letter-spacing: -0.02em;
   }
+  .lucide {
+    stroke-width: 2;
+  }
   ::selection {
     background: #fef08a;
     color: var(--foreground);
