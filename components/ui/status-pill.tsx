@@ -24,7 +24,7 @@ export function StatusPill({
   return (
     <span
       className={cn(
-        "inline-flex h-5 items-center gap-1.5 rounded-full border px-2 text-[0.68rem] font-bold tracking-[0.06em]",
+        "inline-flex h-6 items-center gap-1.5 rounded-full border px-2.5 text-[0.68rem] font-semibold tracking-[0.04em]",
         tone.pill,
       )}
     >
