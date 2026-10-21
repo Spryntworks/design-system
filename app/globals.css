@@ -124,3 +124,21 @@
     text-underline-offset: 0.18em;
   }
 }
+
+@keyframes desk-live {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.28;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .desk-live {
+    animation: desk-live 1.6s ease-out infinite;
+  }
+}
