@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { toast } from "sonner"
 
-import { Specimen } from "@/components/docs/specimen"
+import { DeskRow, Specimen } from "@/components/docs/specimen"
 import { Button } from "@/components/ui/button"
 import {
   Command,
@@ -78,10 +78,12 @@ export function OverlaysCatalog() {
         title="Command"
         note="Jump across projects and pages. Open it from a button here. In a tool, bind it to ⌘K."
       >
+        <DeskRow title="Jump" detail="Opens the same search a tool binds to ⌘K.">
         <Button variant="outline" onClick={() => setOpen(true)}>
           Open command
           <Kbd>⌘K</Kbd>
         </Button>
+        </DeskRow>
         <CommandDialog open={open} onOpenChange={setOpen} title="Command" description="Jump to a project or a page.">
           <Command>
             <CommandInput placeholder="Jump to a project or a page" />
@@ -113,6 +115,7 @@ export function OverlaysCatalog() {
       </Specimen>
 
       <Specimen title="Dialog" note="Stops the page. Use it when the next step can discard work.">
+        <DeskRow title="Week 12 narrative" detail="Archive leaves the active list. The log keeps the record.">
         <Dialog>
           <DialogTrigger render={<Button variant="outline" />}>Archive run</DialogTrigger>
           <DialogContent>
@@ -128,9 +131,11 @@ export function OverlaysCatalog() {
             </DialogFooter>
           </DialogContent>
         </Dialog>
+        </DeskRow>
       </Specimen>
 
       <Specimen title="Sheet" note="A side panel for detail that should stay next to the list.">
+        <DeskRow title="Week 12 narrative" detail="Detail stays next to the list. It does not cover the page.">
         <Sheet>
           <SheetTrigger render={<Button variant="outline" />}>Run details</SheetTrigger>
           <SheetContent>
@@ -146,9 +151,11 @@ export function OverlaysCatalog() {
             </div>
           </SheetContent>
         </Sheet>
+        </DeskRow>
       </Specimen>
 
       <Specimen title="Menu" note="A few actions on one record. Destructive sits last.">
+        <DeskRow title="Week 12 narrative" detail="Rename, duplicate, or archive. Archive sits last.">
         <DropdownMenu>
           <DropdownMenuTrigger render={<Button variant="outline" />}>
             Run actions
@@ -160,11 +167,13 @@ export function OverlaysCatalog() {
             <DropdownMenuItem variant="destructive">Archive</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        </DeskRow>
       </Specimen>
 
       <Specimen title="Context menu" note="The same actions, on right-click, when the row itself is the target.">
+        <DeskRow title="Right-click the row" detail="The row is the target. The menu is the same set of actions." className="w-full max-w-md">
         <ContextMenu>
-          <ContextMenuTrigger className="flex max-w-md items-center justify-between rounded-xl border border-border bg-card px-4 py-3 text-sm">
+          <ContextMenuTrigger className="flex w-full items-center justify-between rounded-lg border border-border bg-background px-3 py-2.5 text-sm">
             <span className="font-medium">Week 12 narrative</span>
             <StatusPill value="WAIT" />
           </ContextMenuTrigger>
@@ -175,9 +184,11 @@ export function OverlaysCatalog() {
             <ContextMenuItem variant="destructive">Archive</ContextMenuItem>
           </ContextMenuContent>
         </ContextMenu>
+        </DeskRow>
       </Specimen>
 
       <Specimen title="Popover" note="A small form anchored to the control that opened it.">
+        <DeskRow title="Status" detail="A small form anchored to the control that opened it.">
         <Popover>
           <PopoverTrigger render={<Button variant="outline" />}>Filter status</PopoverTrigger>
           <PopoverContent>
@@ -192,9 +203,11 @@ export function OverlaysCatalog() {
             </div>
           </PopoverContent>
         </Popover>
+        </DeskRow>
       </Specimen>
 
       <Specimen title="Tooltip" note="A name for an icon, or a shortcut. Not a second paragraph.">
+        <DeskRow title="Publish" detail="The tooltip names the action and the shortcut. It is not a second paragraph.">
         <Tooltip>
           <TooltipTrigger render={<Button variant="outline" />}>Publish</TooltipTrigger>
           <TooltipContent>
@@ -205,9 +218,11 @@ export function OverlaysCatalog() {
             </span>
           </TooltipContent>
         </Tooltip>
+        </DeskRow>
       </Specimen>
 
       <Specimen title="Hover card" note="A preview when the pointer rests on a project name.">
+        <DeskRow title="Project" detail="Rest the pointer on the name to see the open count.">
         <HoverCard>
           <HoverCardTrigger
             render={<Button variant="link" className="px-0" />}
@@ -220,6 +235,7 @@ export function OverlaysCatalog() {
             <p className="mt-1 text-sm text-muted-foreground">18 open items · Ready</p>
           </HoverCardContent>
         </HoverCard>
+        </DeskRow>
       </Specimen>
     </div>
   )

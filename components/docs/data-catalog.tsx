@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { Specimen } from "@/components/docs/specimen"
+import { DeskRow, Specimen } from "@/components/docs/specimen"
 import {
   Accordion,
   AccordionContent,
@@ -59,26 +59,29 @@ export function DataCatalog() {
   return (
     <div className="flex flex-col gap-10">
       <Specimen title="Breadcrumb" note="Where this screen sits. The last crumb is the current page.">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">Sprynt</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/components">Components</BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage>Data</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+        <DeskRow title="Data" detail="Sprynt / Components / Data. The last crumb is this page.">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Sprynt</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>Data</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </DeskRow>
       </Specimen>
 
       <Specimen
         title="Table"
         note="Selectable rows, a count in tabular figures, and a status pill. Select a row to act on it."
+        flush
       >
         <div className="overflow-hidden rounded-xl border border-border bg-card">
           <Table>
@@ -124,73 +127,87 @@ export function DataCatalog() {
               ))}
             </TableBody>
           </Table>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border px-4 py-3">
+            <p className="text-sm text-muted-foreground">{selected.length} selected</p>
+            <p className="text-sm text-muted-foreground">3 projects</p>
+          </div>
         </div>
-        <p className="mt-3 text-sm text-muted-foreground">
-          {selected.length} selected
-        </p>
       </Specimen>
 
       <Specimen title="Pagination" note="Keep the page size stable. Say previous and next in words.">
-        <Pagination className="justify-start">
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#rows" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#rows" isActive>
-                1
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#rows">2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#rows">8</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#rows" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+        <DeskRow title="Page 1 of 8" detail="Previous and next stay in words. The page size does not change.">
+          <Pagination className="mx-0 w-auto justify-end">
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#rows" />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#rows" isActive>
+                  1
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#rows">2</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#rows">8</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#rows" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </DeskRow>
       </Specimen>
 
       <Specimen title="Tabs" note="Tabs switch a view of the same record. They are not navigation between tools.">
-        <Tabs defaultValue="open">
-          <TabsList>
-            <TabsTrigger value="open">Open</TabsTrigger>
-            <TabsTrigger value="review">In review</TabsTrigger>
-            <TabsTrigger value="closed">Closed</TabsTrigger>
-          </TabsList>
-          <TabsContent value="open" className="pt-4 text-sm">
-            4 runs are waiting on a reviewer.
-          </TabsContent>
-          <TabsContent value="review" className="pt-4 text-sm">
-            2 runs are with the project lead.
-          </TabsContent>
-          <TabsContent value="closed" className="pt-4 text-sm">
-            11 runs closed this week.
-          </TabsContent>
-        </Tabs>
+        <div className="px-5 py-4">
+          <Tabs defaultValue="open">
+            <TabsList>
+              <TabsTrigger value="open">Open</TabsTrigger>
+              <TabsTrigger value="review">In review</TabsTrigger>
+              <TabsTrigger value="closed">Closed</TabsTrigger>
+            </TabsList>
+            <TabsContent value="open" className="pt-4">
+              <ul className="divide-y divide-border rounded-lg border border-border">
+                <li className="flex items-center justify-between gap-3 px-4 py-3">
+                  <span className="text-sm font-medium">Week 12 narrative</span>
+                  <StatusPill value="WAIT" />
+                </li>
+                <li className="flex items-center justify-between gap-3 px-4 py-3">
+                  <span className="text-sm font-medium">Launch thread</span>
+                  <StatusPill value="BLOCKED" />
+                </li>
+              </ul>
+            </TabsContent>
+            <TabsContent value="review" className="pt-4 text-sm leading-6 text-muted-foreground">
+              2 runs are with the project lead.
+            </TabsContent>
+            <TabsContent value="closed" className="pt-4 text-sm leading-6 text-muted-foreground">
+              11 runs closed this week.
+            </TabsContent>
+          </Tabs>
+        </div>
       </Specimen>
 
       <Specimen title="Accordion" note="A log that stays on the page. Open one section at a time.">
-        <Accordion defaultValue={["brief"]} className="max-w-xl">
+        <Accordion defaultValue={["brief"]}>
           <AccordionItem value="brief">
-            <AccordionTrigger>Brief</AccordionTrigger>
-            <AccordionContent>
+            <AccordionTrigger className="px-5">Brief</AccordionTrigger>
+            <AccordionContent className="px-5">
               Week 12 covers the migration story in four posts.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="channels">
-            <AccordionTrigger>Channels</AccordionTrigger>
-            <AccordionContent>LinkedIn and X. The blog draft stays in the hub.</AccordionContent>
+            <AccordionTrigger className="px-5">Channels</AccordionTrigger>
+            <AccordionContent className="px-5">LinkedIn and X. The blog draft stays in the hub.</AccordionContent>
           </AccordionItem>
           <AccordionItem value="log">
-            <AccordionTrigger>Log</AccordionTrigger>
-            <AccordionContent>Saved Tuesday. Waiting on a review before Friday.</AccordionContent>
+            <AccordionTrigger className="px-5">Log</AccordionTrigger>
+            <AccordionContent className="px-5">Saved Tuesday. Waiting on a review before Friday.</AccordionContent>
           </AccordionItem>
         </Accordion>
       </Specimen>
