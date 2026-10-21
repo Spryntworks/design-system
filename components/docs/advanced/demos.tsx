@@ -45,15 +45,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
-  Item,
-  ItemActions,
-  ItemContent,
-  ItemDescription,
-  ItemGroup,
-  ItemMedia,
-  ItemTitle,
-} from "@/components/ui/item"
-import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -161,13 +152,26 @@ export function SidebarSection() {
         </SidebarFooter>
       </Sidebar>
       <SidebarInset className="bg-background">
-        <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-          <h2 className="text-sm font-semibold">Week 12 narrative</h2>
-          <StatusPill value="WAIT" />
+        <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
+          <div className="flex items-center gap-2">
+            <h2 className="text-sm font-semibold">Week 12 narrative</h2>
+            <StatusPill value="WAIT" />
+          </div>
+          <span className="text-xs text-muted-foreground">Training Portal</span>
         </div>
-        <p className="px-4 py-3 text-sm text-muted-foreground">
-          The brief is with review. Publish stays off until it is ready.
-        </p>
+        <ul className="divide-y divide-border">
+          <li className="flex items-center justify-between gap-3 px-4 py-3">
+            <span className="text-sm">LinkedIn draft</span>
+            <StatusPill value="READY" />
+          </li>
+          <li className="flex items-center justify-between gap-3 px-4 py-3">
+            <span className="text-sm">X draft</span>
+            <StatusPill value="BLOCKED" />
+          </li>
+          <li className="px-4 py-3 text-sm leading-6 text-muted-foreground">
+            Publish stays off until the brief is ready.
+          </li>
+        </ul>
       </SidebarInset>
     </SidebarProvider>
   )
@@ -175,24 +179,37 @@ export function SidebarSection() {
 
 export function NavigationSection() {
   return (
-    <div className="rounded-xl border border-border bg-card px-3 py-2">
-      <NavigationMenu>
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuLink href="/components/advanced" className={navigationMenuTriggerStyle()}>
-              Desk
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Projects</NavigationMenuTrigger>
-            <NavigationMenuContent className="grid w-56 gap-0.5">
-              <NavigationMenuLink href="/components/advanced/sidebar">Training Portal</NavigationMenuLink>
-              <NavigationMenuLink href="/components/advanced/list">Support Portal</NavigationMenuLink>
-              <NavigationMenuLink href="/components/advanced/chart">Content Copilot</NavigationMenuLink>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border bg-card px-3 py-2">
+      <div className="flex items-center gap-3">
+        <span className="px-2 text-sm font-semibold">Desk</span>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink href="/components/advanced" className={navigationMenuTriggerStyle()}>
+                Runs
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Projects</NavigationMenuTrigger>
+              <NavigationMenuContent className="grid w-64 gap-1 p-2">
+                <NavigationMenuLink href="/components/advanced/sidebar" className="block rounded-md px-3 py-2 hover:bg-muted">
+                  <span className="block text-sm font-medium">Training Portal</span>
+                  <span className="block text-xs text-muted-foreground">18 open</span>
+                </NavigationMenuLink>
+                <NavigationMenuLink href="/components/advanced/list" className="block rounded-md px-3 py-2 hover:bg-muted">
+                  <span className="block text-sm font-medium">Support Portal</span>
+                  <span className="block text-xs text-muted-foreground">6 open</span>
+                </NavigationMenuLink>
+                <NavigationMenuLink href="/components/advanced/chart" className="block rounded-md px-3 py-2 hover:bg-muted">
+                  <span className="block text-sm font-medium">Content Copilot</span>
+                  <span className="block text-xs text-muted-foreground">11 open</span>
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+      <span className="px-2 text-xs text-muted-foreground">Week 12</span>
     </div>
   )
 }
@@ -225,14 +242,21 @@ export function SplitSection() {
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize="62" minSize="30">
-        <div className="flex h-full flex-col gap-3 p-4">
-          <div className="flex items-center gap-2">
+        <div className="flex h-full flex-col">
+          <div className="flex items-center gap-2 border-b border-border px-4 py-3">
             <h2 className="text-sm font-semibold">{activeRun.title}</h2>
             <StatusPill value={activeRun.status} />
           </div>
-          <p className="text-sm text-muted-foreground">
-            {activeRun.project}. Open the brief, then the draft, before this leaves the desk.
-          </p>
+          <dl className="grid gap-4 p-4 text-sm">
+            <div>
+              <dt className="text-muted-foreground">Project</dt>
+              <dd className="mt-1 font-medium">{activeRun.project}</dd>
+            </div>
+            <div>
+              <dt className="text-muted-foreground">Next</dt>
+              <dd className="mt-1 leading-6">Open the brief, then the draft, before this leaves the desk.</dd>
+            </div>
+          </dl>
         </div>
       </ResizablePanel>
     </ResizablePanelGroup>
@@ -331,15 +355,15 @@ export function FiltersSection() {
   }
 
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4">
-      <div className="flex flex-wrap items-center gap-2">
+    <div className="overflow-hidden rounded-xl border border-border bg-card">
+      <div className="flex flex-wrap items-center gap-2 border-b border-border px-4 py-3">
         {chips.length === 0 ? (
           <p className="text-sm text-muted-foreground">No filters. The full list is showing.</p>
         ) : (
           chips.map((chip) => (
             <span
               key={chip}
-              className="inline-flex h-6 items-center gap-1 rounded-full border border-border bg-background px-2 text-xs"
+              className="inline-flex h-7 items-center gap-1 rounded-full border border-border bg-background px-2.5 text-xs"
             >
               {chip}
               <button
@@ -353,71 +377,94 @@ export function FiltersSection() {
             </span>
           ))
         )}
+        <Collapsible>
+          <CollapsibleTrigger render={<Button variant="outline" size="sm" />}>
+            More filters
+          </CollapsibleTrigger>
+          <CollapsibleContent className="mt-3 flex flex-col gap-2">
+            <label className="flex items-center gap-2 text-sm">
+              <Checkbox
+                checked={channels.includes("linkedin")}
+                onCheckedChange={(checked) => toggleChannel("linkedin", checked === true)}
+              />
+              LinkedIn
+            </label>
+            <label className="flex items-center gap-2 text-sm">
+              <Checkbox
+                checked={channels.includes("x")}
+                onCheckedChange={(checked) => toggleChannel("x", checked === true)}
+              />
+              X
+            </label>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
-      <Collapsible>
-        <CollapsibleTrigger render={<Button variant="outline" size="sm" />}>
-          More filters
-        </CollapsibleTrigger>
-        <CollapsibleContent className="mt-3 flex flex-col gap-2">
-          <label className="flex items-center gap-2 text-sm">
-            <Checkbox
-              checked={channels.includes("linkedin")}
-              onCheckedChange={(checked) => toggleChannel("linkedin", checked === true)}
-            />
-            LinkedIn
-          </label>
-          <label className="flex items-center gap-2 text-sm">
-            <Checkbox
-              checked={channels.includes("x")}
-              onCheckedChange={(checked) => toggleChannel("x", checked === true)}
-            />
-            X
-          </label>
-        </CollapsibleContent>
-      </Collapsible>
+      <ul className="divide-y divide-border">
+        {runs.map((run) => (
+          <li key={run.id} className="flex items-center justify-between gap-3 px-4 py-3">
+            <span className="min-w-0">
+              <span className="block text-sm font-medium">{run.title}</span>
+              <span className="block text-xs text-muted-foreground">{run.project}</span>
+            </span>
+            <StatusPill value={run.status} />
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
 
 export function ListSection() {
   return (
-    <ItemGroup className="gap-2">
+    <ul className="divide-y divide-border rounded-xl border border-border bg-card">
       {runs.map((run) => (
-        <Item key={run.id} variant="outline">
-          <ItemMedia variant="icon">
-            <FileTextIcon />
-          </ItemMedia>
-          <ItemContent>
-            <ItemTitle>{run.title}</ItemTitle>
-            <ItemDescription>{run.project}</ItemDescription>
-          </ItemContent>
-          <ItemActions>
-            <StatusPill value={run.status} />
-          </ItemActions>
-        </Item>
+        <li key={run.id} className="flex flex-wrap items-center gap-x-6 gap-y-2 px-5 py-4">
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-semibold">{run.title}</p>
+            <p className="mt-1 text-sm text-muted-foreground">{run.project}</p>
+          </div>
+          <StatusPill value={run.status} />
+        </li>
       ))}
-    </ItemGroup>
+    </ul>
   )
 }
 
 export function StepsSection() {
   return (
-    <div className="rounded-xl border border-border bg-card p-4">
-      <Stepper steps={["Brief", "Draft", "Review", "Publish"]} current={2} label="Run progress" />
-    </div>
+    <section className="rounded-xl border border-border bg-card px-5 py-5">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 className="text-lg font-semibold">Week 12 narrative</h2>
+          <p className="mt-1 text-sm text-muted-foreground">Training Portal · in review</p>
+        </div>
+        <StatusPill value="WAIT" />
+      </div>
+      <Stepper
+        orientation="vertical"
+        current={2}
+        label="Run progress"
+        steps={[
+          { label: "Brief", detail: "The migration story is written." },
+          { label: "Draft", detail: "Four posts are in the hub." },
+          { label: "Review", detail: "Waiting on the project lead." },
+          { label: "Publish", detail: "Stays off until review is done." },
+        ]}
+      />
+    </section>
   )
 }
 
 export function ActivitySection() {
   return (
-    <ScrollArea className="h-48 rounded-xl border border-border bg-card">
-      <ol>
+    <ScrollArea className="h-64 rounded-xl border border-border bg-card">
+      <ol className="divide-y divide-border">
         {events.map((event) => (
-          <li key={event.time} className="flex items-start gap-3 border-b border-border px-4 py-2.5 last:border-b-0">
-            <span className={`mt-1.5 size-2 shrink-0 rounded-full ${event.tone}`} aria-hidden="true" />
-            <span className="min-w-0">
-              <span className="block text-sm">{event.text}</span>
-              <span className="font-mono text-xs text-muted-foreground">{event.time}</span>
+          <li key={event.time} className="grid grid-cols-[4.5rem_minmax(0,1fr)] gap-x-4 px-5 py-3">
+            <span className="pt-0.5 font-mono text-xs tabular-nums text-muted-foreground">{event.time}</span>
+            <span className="flex items-start gap-2 text-sm leading-6">
+              <span className={`mt-2 size-1.5 shrink-0 rounded-full ${event.tone}`} aria-hidden="true" />
+              {event.text}
             </span>
           </li>
         ))}
@@ -428,8 +475,12 @@ export function ActivitySection() {
 
 export function ChartSection() {
   return (
-    <div className="rounded-xl border border-border bg-card p-4">
-      <ChartContainer config={chartConfig} className="aspect-auto h-56 w-full">
+    <div className="rounded-xl border border-border bg-card px-5 pt-5 pb-3">
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold">This week</h2>
+        <p className="mt-1 text-sm text-muted-foreground">Published against still waiting.</p>
+      </div>
+      <ChartContainer config={chartConfig} className="mt-4 aspect-auto h-56 w-full">
         <BarChart data={posts} accessibilityLayer>
           <CartesianGrid vertical={false} />
           <XAxis dataKey="day" tickLine={false} axisLine={false} tickMargin={8} />
@@ -444,52 +495,64 @@ export function ChartSection() {
 
 export function ConfirmSection() {
   return (
-    <AlertDialog>
-      <AlertDialogTrigger render={<Button variant="outline" />}>Archive run</AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Archive this run?</AlertDialogTitle>
-          <AlertDialogDescription>
-            It leaves the desk. The log keeps the record.
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Keep it</AlertDialogCancel>
-          <AlertDialogAction variant="destructive">Archive</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+    <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-card px-5 py-4">
+      <div>
+        <h2 className="text-sm font-semibold">Week 12 narrative</h2>
+        <p className="mt-1 text-sm text-muted-foreground">Archiving takes it off the desk. The log keeps the record.</p>
+      </div>
+      <AlertDialog>
+        <AlertDialogTrigger render={<Button variant="destructive" />}>Archive run</AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Archive this run?</AlertDialogTitle>
+            <AlertDialogDescription>
+              It leaves the desk. The log keeps the record.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Keep it</AlertDialogCancel>
+            <AlertDialogAction variant="destructive">Archive</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
   )
 }
 
 export function DrawerSection() {
   return (
-    <Drawer swipeDirection="right">
-      <DrawerTrigger render={<Button variant="outline" />}>Open filters</DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>Filters</DrawerTitle>
-          <DrawerDescription>Narrow the run list without leaving it.</DrawerDescription>
-        </DrawerHeader>
-        <div className="flex flex-col gap-3 px-4 py-4">
-          <label className="flex items-center gap-2 text-sm">
-            <Checkbox defaultChecked />
-            Ready
-          </label>
-          <label className="flex items-center gap-2 text-sm">
-            <Checkbox />
-            Wait
-          </label>
-          <label className="flex items-center gap-2 text-sm">
-            <Checkbox />
-            Blocked
-          </label>
-        </div>
-        <DrawerFooter>
-          <DrawerClose render={<Button />}>Apply</DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
+    <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-border bg-card px-5 py-4">
+      <div>
+        <h2 className="text-sm font-semibold">3 runs</h2>
+        <p className="mt-1 text-sm text-muted-foreground">Filters stay off the page until someone asks for them.</p>
+      </div>
+      <Drawer swipeDirection="right">
+        <DrawerTrigger render={<Button variant="outline" />}>Open filters</DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Filters</DrawerTitle>
+            <DrawerDescription>Narrow the run list without leaving it.</DrawerDescription>
+          </DrawerHeader>
+          <div className="flex flex-col gap-3 px-4 py-4">
+            <label className="flex items-center gap-2 text-sm">
+              <Checkbox defaultChecked />
+              Ready
+            </label>
+            <label className="flex items-center gap-2 text-sm">
+              <Checkbox />
+              Wait
+            </label>
+            <label className="flex items-center gap-2 text-sm">
+              <Checkbox />
+              Blocked
+            </label>
+          </div>
+          <DrawerFooter>
+            <DrawerClose render={<Button />}>Apply</DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </div>
   )
 }
 
