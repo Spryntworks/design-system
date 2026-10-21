@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 
-import { AdvancedCatalog } from "@/components/docs/advanced-catalog"
+import { advancedSections } from "@/components/docs/advanced/sections"
 
 export const metadata: Metadata = { title: "Advanced" }
 
@@ -10,12 +11,22 @@ export default function AdvancedPage() {
       <header className="max-w-[68ch]">
         <h1 className="text-3xl font-semibold">Advanced</h1>
         <p className="mt-3 text-base leading-7 text-muted-foreground">
-          Patterns a desk repeats: a frame, a split, a sorted list, and the moment before something is removed.
+          Patterns a desk repeats. Each one is its own section.
         </p>
       </header>
-      <div className="mt-8">
-        <AdvancedCatalog />
-      </div>
+      <ul className="mt-8 divide-y divide-border rounded-xl border border-border bg-card">
+        {advancedSections.map((section) => (
+          <li key={section.slug}>
+            <Link
+              href={`/components/advanced/${section.slug}`}
+              className="flex flex-col gap-1 px-4 py-3 hover:bg-muted"
+            >
+              <span className="text-sm font-semibold">{section.title}</span>
+              <span className="text-sm text-muted-foreground">{section.note}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

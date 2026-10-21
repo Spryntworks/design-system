@@ -31,11 +31,6 @@ const groups = [
     title: "Feedback",
     note: "Status, alerts, progress, skeleton, empty, and toast.",
   },
-  {
-    href: "/components/advanced",
-    title: "Advanced",
-    note: "Sidebar, split view, sorting, filters, chart, steps, and confirm.",
-  },
 ]
 
 export default function ComponentsPage() {
